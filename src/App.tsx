@@ -1,25 +1,60 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import { lightTheme, darkTheme } from './style/Darkmode/Themes';
+import { GlobalStyle } from "./style/Darkmode/Globalstyle";
+import Navigation from './layouts/Navigation/Navigation';
+import Footer from './layouts/Footer/Footer';
+import Home from './pages/Home/Home';
+import Frontend from './pages/Frontend/Frontend';
+import Backend from './pages/Backend/Backend';
+import PageNotFound from './pages/PageNotFound/PageNotFound';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    const [theme, setTheme] = useState("light");
+
+    const themeToggler = () => {
+      if (theme === "light") {
+        setTheme("dark")
+      } else {
+        setTheme("light")
+      }
+    }
+
+    return (
+        <main className="App">
+            <Router>
+                <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+                <GlobalStyle />
+                <Navigation switchTheme={themeToggler} />
+
+                    <Routes>
+                        <Route
+                            path="/"
+                            element={<Home />}
+                        />
+
+                        <Route
+                            path="/frontend"
+                            element={<Frontend />}
+                        />
+                        
+                        <Route
+                            path="/backend"
+                            element={<Backend />}
+                        />
+                        
+                        <Route
+                            path="*"
+                            element={<PageNotFound />}
+                        />
+                    </Routes>
+
+                <Footer />
+                </ThemeProvider>
+            </Router>
+        </main>
   );
 }
 

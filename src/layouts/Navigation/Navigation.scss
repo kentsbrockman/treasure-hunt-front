@@ -1,0 +1,32 @@
+.Navigation {
+    display: flex;
+    align-items: center;
+    margin-right: 2em;
+}
+
+.navigation-links {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-right: auto;
+}
+
+.navlink {
+  text-decoration: none !important;
+  font-size: x-large;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border-radius: 4px;
+
+  &.active {
+    font-weight: 600;
+    color: #0741ad !important;
+    pointer-events: none !important;
+  }
+}
+
+.navlink:hover {
+  background-color: #cdd9ef;
+}
