@@ -9,6 +9,7 @@ import Home from './pages/Home/Home';
 import Frontend from './pages/Frontend/Frontend';
 import Backend from './pages/Backend/Backend';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
 
@@ -23,7 +24,7 @@ function App() {
     }
 
     return (
-        <main className="App">
+        <div className="App">
             <Router>
                 <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
                 <GlobalStyle />
@@ -54,7 +55,7 @@ function App() {
                 <Footer />
                 </ThemeProvider>
             </Router>
-        </main>
+        </div>
   );
 }
 

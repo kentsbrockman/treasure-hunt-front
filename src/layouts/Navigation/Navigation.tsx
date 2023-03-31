@@ -1,9 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { Navbar } from "react-bootstrap";
-
 // @ts-ignore
 import logo from "assets/images/logo.png";
-
 import { useContext } from "react";
 import { ThemeContext } from "styled-components";
 import IOSSwitch from "style/Darkmode/IOSSwitch";

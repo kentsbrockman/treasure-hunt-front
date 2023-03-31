@@ -2,7 +2,6 @@ import LottieAnimation from "assets/animations/lottie";
 import anim404 from "assets/animations/anim404.json";
 import { useNavigate } from "react-router-dom";
 import "./PageNotFound.scss";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 // @ts-ignore
 import Fade from "react-reveal/Fade";
