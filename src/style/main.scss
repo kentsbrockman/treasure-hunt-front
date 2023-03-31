@@ -42,3 +42,31 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+.ButtonPrimaryCustom {
+  background-color: #0741ad !important;
+  border-color: #0741ad !important;
+}
+
+.ButtonPrimaryCustom:hover {
+  background-color: #042768 !important;
+  border-color: #042768 !important;
+}
+
+.ButtonSecondaryCustom {
+  background-color: #ad7307 !important;
+  border-color: #ad7307 !important;
+}
+
+.ButtonSecondaryCustom:hover {
+  background-color: #7c5205 !important;
+  border-color: #7c5205 !important;
+}
+
+.margin-right-1 {
+    margin-right: 1rem;
+}
+
+.margin-right-1-25 {
+    margin-right: 1.25rem;
+}

@@ -10,53 +10,56 @@ import Frontend from './pages/Frontend/Frontend';
 import Backend from './pages/Backend/Backend';
 import PageNotFound from './pages/PageNotFound/PageNotFound';
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Fade } from "react-awesome-reveal";
 
 function App() {
 
     const [theme, setTheme] = useState("light");
 
     const themeToggler = () => {
-      if (theme === "light") {
+        if (theme === "light") {
         setTheme("dark")
-      } else {
+        } else {
         setTheme("light")
-      }
+        }
     }
 
     return (
-        <div className="App">
-            <Router>
-                <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
-                <GlobalStyle />
-                <Navigation switchTheme={themeToggler} />
+        <Fade duration={2000}>
+            <div className="App">
+                <Router>
+                    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+                    <GlobalStyle />
+                    <Navigation switchTheme={themeToggler} />
 
-                    <Routes>
-                        <Route
-                            path="/"
-                            element={<Home />}
-                        />
+                        <Routes>
+                            <Route
+                                path="/"
+                                element={<Home />}
+                            />
 
-                        <Route
-                            path="/frontend"
-                            element={<Frontend />}
-                        />
-                        
-                        <Route
-                            path="/backend"
-                            element={<Backend />}
-                        />
-                        
-                        <Route
-                            path="*"
-                            element={<PageNotFound />}
-                        />
-                    </Routes>
+                            <Route
+                                path="/frontend"
+                                element={<Frontend />}
+                            />
+                            
+                            <Route
+                                path="/backend"
+                                element={<Backend />}
+                            />
+                            
+                            <Route
+                                path="*"
+                                element={<PageNotFound />}
+                            />
+                        </Routes>
 
-                <Footer />
-                </ThemeProvider>
-            </Router>
-        </div>
-  );
+                    <Footer />
+                    </ThemeProvider>
+                </Router>
+            </div>
+        </Fade>
+    );
 }
 
 export default App;
