@@ -34,6 +34,14 @@ const Navigation = ({switchTheme}: any) => {
             >
                 Backend
             </NavLink>
+
+            <NavLink
+                to="/aboutus"
+                className="navlink"
+                style={{color: theme.text}}
+            >
+                À propos
+            </NavLink>
         </div>
 
         <IOSSwitch onClick={switchTheme} />

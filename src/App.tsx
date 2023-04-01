@@ -9,6 +9,7 @@ import Home from "./pages/Home/Home";
 import Frontend from "./pages/Frontend/Frontend";
 import Backend from "./pages/Backend/Backend";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
+import AboutUs from "./pages/AboutUs/AboutUs";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css";
 import { Fade } from "react-awesome-reveal";
@@ -47,6 +48,11 @@ function App() {
                             <Route
                                 path="/backend"
                                 element={<Backend />}
+                            />
+
+                            <Route
+                                path="/aboutus"
+                                element={<AboutUs />}
                             />
                             
                             <Route

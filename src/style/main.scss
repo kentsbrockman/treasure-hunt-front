@@ -43,24 +43,29 @@ table {
 	border-spacing: 0;
 }
 
+$base-color: #0741ad;
+$base-color-variant: #042768;
+$secondary-color: #ad7307;
+$secondary-color-variant: #7c5205;
+
 .ButtonPrimaryCustom {
-  background-color: #0741ad !important;
-  border-color: #0741ad !important;
+  background-color: $base-color !important;
+  border-color: $base-color !important;
 }
 
 .ButtonPrimaryCustom:hover {
-  background-color: #042768 !important;
-  border-color: #042768 !important;
+  background-color: $base-color-variant !important;
+  border-color: $base-color-variant !important;
 }
 
 .ButtonSecondaryCustom {
-  background-color: #ad7307 !important;
-  border-color: #ad7307 !important;
+  background-color: $secondary-color !important;
+  border-color: $secondary-color !important;
 }
 
 .ButtonSecondaryCustom:hover {
-  background-color: #7c5205 !important;
-  border-color: #7c5205 !important;
+  background-color: $secondary-color-variant !important;
+  border-color: $secondary-color-variant !important;
 }
 
 .margin-right-1 {
@@ -93,10 +98,6 @@ table {
 
 .w-20 {
     width: 20rem;
-}
-
-.bold {
-    font-weight: bold;
 }
 
 .margin-left-1 {
@@ -161,4 +162,16 @@ table {
 
 .margin-right-5 {
     margin-right: 5rem;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    background: $base-color !important;
+}
+  
+input[type="range"]::-moz-range-thumb {
+    background: $base-color !important;
+}
+
+input[type="range"]::-ms-thumb {
+    background: $base-color !important;
 }

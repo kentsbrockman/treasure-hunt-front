@@ -22,49 +22,49 @@ const InputGridLayout = ({ onSubmit }: any) => {
 
     return (
 
-            <Col>
-                <h3 className="sub-header text-center mb-5">Commençons par construire la carte aux trésors</h3>
+        <>
+            <h3 className="sub-header text-center mb-5">Commençons par construire la carte aux trésors</h3>
 
-                <Form className="margin-left-5 margin-right-5" onSubmit={validateGridLayout}>
-                    <Form.Group className="mb-3" as={Row}>
-                        <Col sm={4}>
-                            <Form.Label className="bold">Nombre de colonnes</Form.Label>
-                        </Col>
-                        <Col sm={8}>                
-                            <RangeSlider
-                                value={nbColumns}
-                                onChange={e => setNbColumns(parseInt(e.target.value))}
-                                min={minCols}
-                                max={maxCols}
-                            />
-                        </Col>
-                    </Form.Group>
+            <Form className="margin-left-5 margin-right-5" onSubmit={validateGridLayout}>
+                <Form.Group className="mb-3" as={Row}>
+                    <Col sm={4}>
+                        <Form.Label className="fw-bold">Nombre de colonnes</Form.Label>
+                    </Col>
+                    <Col sm={8}>                
+                        <RangeSlider
+                            value={nbColumns}
+                            onChange={e => setNbColumns(parseInt(e.target.value))}
+                            min={minCols}
+                            max={maxCols}
+                        />
+                    </Col>
+                </Form.Group>
 
-                    <Form.Group className="mb-5" as={Row}>
-                        <Col sm={4}>
-                            <Form.Label className="bold">Nombre de lignes</Form.Label>
-                        </Col>
-                        <Col sm={8}>                
-                            <RangeSlider
-                                value={nbRows}
-                                onChange={e => setNbRows(parseInt(e.target.value))}
-                                min={minRows}
-                                max={maxRows}
-                            />
-                        </Col>
-                    </Form.Group>
+                <Form.Group className="mb-5" as={Row}>
+                    <Col sm={4}>
+                        <Form.Label className="fw-bold">Nombre de lignes</Form.Label>
+                    </Col>
+                    <Col sm={8}>                
+                        <RangeSlider
+                            value={nbRows}
+                            onChange={e => setNbRows(parseInt(e.target.value))}
+                            min={minRows}
+                            max={maxRows}
+                        />
+                    </Col>
+                </Form.Group>
 
-                        
-    
-                    <div className="d-flex justify-content-center">
-                        <Button className="ButtonPrimaryCustom w-10" size="lg" type="submit">
-                            Valider
-                        </Button>
-                    </div>
                     
-                </Form>
 
-            </Col>
+                <div className="d-flex justify-content-center">
+                    <Button className="ButtonPrimaryCustom w-10" size="lg" type="submit">
+                        Valider
+                    </Button>
+                </div>
+                
+            </Form>
+
+        </>
         
 
     );

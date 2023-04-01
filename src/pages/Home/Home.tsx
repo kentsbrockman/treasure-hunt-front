@@ -12,6 +12,9 @@ const Home = () => {
     const [adventurer, setAdventurer] = useSessionStorage("TREASURE_HUNT_REGISTERED_ADVENTURER", "")
 
     const saveUsername = (e: FormEvent<HTMLFormElement>) => {
+        if (usernameRef.current.value === "Easter Egg") {
+            window.alert("GG si tu l'as vu sans être allé dans le code 😎");
+        }
         e.preventDefault();
         setAdventurer(usernameRef.current.value);
     }
