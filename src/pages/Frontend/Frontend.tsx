@@ -1,8 +1,9 @@
 import { Container } from "react-bootstrap";
-import InputGridLayout from './components/InputGridLayout/InputGridLayout';
-import { useState, useEffect, useCallback } from 'react';
+import InputGridLayout from "./components/InputGridLayout/InputGridLayout";
+import { useState, useEffect, useCallback } from "react";
 import "./Frontend.scss";
-import GridLayoutProps from './models/GridLayoutProps';
+import { GridLayoutProps } from "./models/GridLayoutProps";
+import { GridSpot } from "./models/GridSpot";
 
 const Frontend = () => {
 
@@ -14,22 +15,31 @@ const Frontend = () => {
     const [showInputGridMountains, setShowInputGridMountains] = useState<boolean>(false);
     const [showInputGridTreasures, setShowInputGridTreasures] = useState<boolean>(false);
     const [showInputGridAdventurer, setShowInputGridAdventurer] = useState<boolean>(false);
+    const [showInputGridMovements, setShowInputGridMovements] = useState<boolean>(false);
 
-    const createInitialGrid = (newGrid: GridLayoutProps) => {
-        const initialGrid = new Array(newGrid.nbRows).fill(undefined);
+    const createInitialGrid = (gridLayout: GridLayoutProps) => {
+        const initialGrid: GridSpot[][] = new Array(gridLayout.nbRows).fill(undefined);
 
         const displayGrid = [];
 
         for (let row in initialGrid) {            
-            initialGrid[row] = new Array(newGrid.nbColumns).fill(undefined);
+            initialGrid[row] = new Array(gridLayout.nbColumns).fill(undefined);
             const cells = [];
 
             for (let col in initialGrid[row]) {
-                initialGrid[row][col] = {x: row, y: col};
-                cells.push(<span key={row.toString() + " - " + col.toString()} className="cell">{row.toString() + " - " + col.toString()}</span>);
+                initialGrid[row][col] = {x: Number(row), y: Number(col)};
+                cells.push(
+                    <span key={row + " - " + col} className="cell">
+                        {row + " - " + col}
+                    </span>
+                );
             }
 
-            displayGrid.push(<div key={"Ligne " + row.toString()} className="d-flex justify-content-center">{cells}</div>);
+            displayGrid.push(
+                <div key={"Ligne " + row} className="d-flex justify-content-center">
+                    {cells}
+                </div>
+            );
         }
 
         setRegisteredGrid(initialGrid);
@@ -38,41 +48,47 @@ const Frontend = () => {
     }
 
     const addMountains = useCallback(() => {
+        setShowInputGridLayout(false);
+        setShowInputGridMountains(true);
         console.log(displayGrid);
     }, [displayGrid])
 
     const addTreasures = useCallback(() => {
+        setShowInputGridMountains(false);
+        setShowInputGridTreasures(true);
         console.log(displayGrid);
     }, [displayGrid])
 
     const addAdventurer = useCallback(() => {
+        setShowInputGridTreasures(false);
+        setShowInputGridAdventurer(true);
+        console.log(displayGrid);
+    }, [displayGrid])
+
+    const addMovements = useCallback(() => {
+        setShowInputGridAdventurer(false);
+        setShowInputGridMovements(true);
         console.log(displayGrid);
     }, [displayGrid])
 
     useEffect(() => {
-        if (step === 2) {
-            setShowInputGridLayout(false);
-            setShowInputGridMountains(true);
-            addMountains();
+        switch(step) {
+            case 2:
+                addMountains();
+                break;
+            case 3:
+                addTreasures();
+                break;
+            case 4:
+                addAdventurer();
+                break;
+            case 5:
+                addMovements();
+                break;
+            default:
+                break;
         }
-
-        if (step === 3) {
-            setShowInputGridMountains(false);
-            setShowInputGridTreasures(true);
-            addTreasures();
-        }
-
-        if (step === 4) {
-            setShowInputGridTreasures(false);
-            setShowInputGridAdventurer(true);
-            addAdventurer();
-        }
-
-        if (step === 5) {
-            setShowInputGridAdventurer(false);
-        }
-
-    }, [step, addMountains, addTreasures, addAdventurer]);
+    }, [step, addMountains, addTreasures, addAdventurer, addMovements]);
 
     return (
         <Container>
@@ -92,6 +108,10 @@ const Frontend = () => {
             }
 
             {showInputGridAdventurer &&
+                <p>Coucou</p>
+            }
+
+            {showInputGridMovements &&
                 <p>Coucou</p>
             }
 

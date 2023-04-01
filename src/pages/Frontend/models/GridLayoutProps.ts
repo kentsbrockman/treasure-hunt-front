@@ -1,6 +1,6 @@
-type GridLayoutProps = {
+interface GridLayoutProps {
     nbColumns: number;
-    nbRows: number
+    nbRows: number;
 }
 
-export default GridLayoutProps;
+export type {GridLayoutProps};
