@@ -1,4 +1,14 @@
-.frontend-header {
-    text-align: center;
-    font-size: xx-large;
+.cell {
+    border: 2px solid black;
+    height: 5rem;
+    width: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #cdd9ef;
+        color: rgb(54, 53, 55);
+    }
 }
