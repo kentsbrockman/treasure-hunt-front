@@ -1,5 +1,4 @@
 import { Image } from "react-bootstrap";
-// @ts-ignore
 import ceo from "assets/images/CEO.jpg";
 
 const AboutUs = () => { 

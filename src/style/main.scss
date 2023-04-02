@@ -45,6 +45,8 @@ table {
 
 $base-color: #0741ad;
 $base-color-variant: #042768;
+$base-color-dark: #042563;
+
 $secondary-color: #ad7307;
 $secondary-color-variant: #7c5205;
 
@@ -174,4 +176,16 @@ input[type="range"]::-moz-range-thumb {
 
 input[type="range"]::-ms-thumb {
     background: $base-color !important;
+}
+
+#RFS-StepButton {
+    pointer-events: none;
+}
+
+.StepButton-0-2-4.active {
+    background-color: $base-color !important;
+}
+
+.StepButton-0-2-4.completed {
+    background-color: $base-color-dark !important;
 }

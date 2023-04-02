@@ -59,7 +59,12 @@ const Home = () => {
 
                             <Form className="margin-right-1-25" onSubmit={saveUsername}>
                                 <Form.Group className="mb-5">
-                                    <Form.Control ref={usernameRef} type="text" placeholder="Nathan Drake, Lara Croft, Indiana Jones..." />
+                                    <Form.Control
+                                        ref={usernameRef}
+                                        type="text"
+                                        pattern="\w{3,24}"
+                                        title="Votre nom d'utilisateur doit être composé de 3 à 24 caractères."
+                                        placeholder="Nathan Drake, Lara Croft, Indiana Jones..." />
                                 </Form.Group>
 
                                 <Button className="ButtonPrimaryCustom" type="submit">
