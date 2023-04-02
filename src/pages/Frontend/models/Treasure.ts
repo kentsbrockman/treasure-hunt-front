@@ -1,6 +1,6 @@
 interface Treasure {
     present?: boolean;
-    number?: number;
+    count?: number;
 }
 
 export type {Treasure};

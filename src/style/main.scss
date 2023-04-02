@@ -189,3 +189,7 @@ input[type="range"]::-ms-thumb {
 .StepButton-0-2-4.completed {
     background-color: $base-color-dark !important;
 }
+
+.pointer-events-none {
+    pointer-events: none;
+}

@@ -1,15 +1,19 @@
 import { Container } from "react-bootstrap";
 import InputGridLayout from "./components/InputGridLayout/InputGridLayout";
-import { useState, useEffect, useCallback } from "react";
+import InputGridMountains from "./components/InputGridMountains/InputGridMountains";
+import { useState, useEffect, useRef } from "react";
 import "./Frontend.scss";
 import { GridLayoutProps } from "./models/GridLayoutProps";
 import { GridSpot } from "./models/GridSpot";
+import { Stepper } from "react-form-stepper";
 
 const Frontend = () => {
-
+    
     const [registeredGrid, setRegisteredGrid]: any[] = useState([]);
     const [displayGrid, setDisplayGrid]: any[] = useState([]);
-    const [step, setStep] = useState<number>(1);
+    const gridRefs = useRef([]);
+
+    const [step, setStep] = useState<number>(0);
 
     const [showInputGridLayout, setShowInputGridLayout] = useState<boolean>(true);
     const [showInputGridMountains, setShowInputGridMountains] = useState<boolean>(false);
@@ -19,7 +23,6 @@ const Frontend = () => {
 
     const createInitialGrid = (gridLayout: GridLayoutProps) => {
         const initialGrid: GridSpot[][] = new Array(gridLayout.nbRows).fill(undefined);
-
         const displayGrid = [];
 
         for (let row in initialGrid) {            
@@ -27,10 +30,15 @@ const Frontend = () => {
             const cells = [];
 
             for (let col in initialGrid[row]) {
-                initialGrid[row][col] = {x: Number(row), y: Number(col)};
+                initialGrid[row][col] = {x: Number(row), y: Number(col), hero: false, mountain: false, treasure: {present: false, count: 0}};
                 cells.push(
-                    <span key={row + " - " + col} className="cell">
-                        {row + " - " + col}
+                    <span
+                        id={row + "-" + col}
+                        key={row + "-" + col}
+                        ref={(elem: never) => gridRefs.current.push(elem)}
+                        className="cell"
+                    >
+                        {row + "-" + col}
                     </span>
                 );
             }
@@ -44,63 +52,53 @@ const Frontend = () => {
 
         setRegisteredGrid(initialGrid);
         setDisplayGrid(displayGrid);
-        setStep(2);
+        setStep(step + 1);
     }
-
-    const addMountains = useCallback(() => {
-        setShowInputGridLayout(false);
-        setShowInputGridMountains(true);
-        console.log(displayGrid);
-    }, [displayGrid])
-
-    const addTreasures = useCallback(() => {
-        setShowInputGridMountains(false);
-        setShowInputGridTreasures(true);
-        console.log(displayGrid);
-    }, [displayGrid])
-
-    const addAdventurer = useCallback(() => {
-        setShowInputGridTreasures(false);
-        setShowInputGridAdventurer(true);
-        console.log(displayGrid);
-    }, [displayGrid])
-
-    const addMovements = useCallback(() => {
-        setShowInputGridAdventurer(false);
-        setShowInputGridMovements(true);
-        console.log(displayGrid);
-    }, [displayGrid])
 
     useEffect(() => {
         switch(step) {
+            case 1:
+                setShowInputGridLayout(false);
+                setShowInputGridMountains(true);
+                break;
             case 2:
-                addMountains();
+                setShowInputGridMountains(false);
+                setShowInputGridTreasures(true);
                 break;
             case 3:
-                addTreasures();
+                setShowInputGridTreasures(false);
+                setShowInputGridAdventurer(true);
                 break;
             case 4:
-                addAdventurer();
-                break;
-            case 5:
-                addMovements();
+                setShowInputGridAdventurer(false);
+                setShowInputGridMovements(true);
                 break;
             default:
                 break;
         }
-    }, [step, addMountains, addTreasures, addAdventurer, addMovements]);
+    }, [step]);
+
+    const updateGrid = (updatedGrid: GridSpot[][]) => {
+        setRegisteredGrid(updatedGrid);
+        setStep(step + 1);
+    }
 
     return (
         <Container>
-
             <h2 className="header text-center mb-5">Partez à l'aventure</h2>
+
+            <Stepper
+                steps={[{}, {}, {}, {}]}
+                activeStep={step}
+                className="mb-5"
+            />
 
             {showInputGridLayout && 
                 <InputGridLayout onSubmit={createInitialGrid} />
             }
 
             {showInputGridMountains &&
-                <p>Coucou</p>
+                <InputGridMountains gridRefs={gridRefs} registeredGrid={registeredGrid} onSubmit={updateGrid} />
             }
 
             {showInputGridTreasures &&
