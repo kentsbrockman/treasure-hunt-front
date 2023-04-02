@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import useEventCallback from "use-event-callback";
-import { GridSpot } from '../../models/GridSpot';
+import { GridSpot } from "../../models/GridSpot";
 
 const InputGridMountains = (props: any) => {
     const {gridRefs, registeredGrid, onSubmit} = props;
@@ -11,6 +11,8 @@ const InputGridMountains = (props: any) => {
     const mountains: string[] = ["⛰️", "🚞", "🌄"];
 
     const [showButtons, setShowButtons] = useState<boolean>(false);
+
+    const [enableComp, setEnableComp] = useState<boolean>(true);
 
     const handleCellClick = useEventCallback((event: React.MouseEvent<HTMLSpanElement>) => {        
         if (!showButtons) {
@@ -27,18 +29,27 @@ const InputGridMountains = (props: any) => {
             registeredGrid[clickedRow][clickedCol].mountain = true;
             setMountainCount(mountainCount + 1);
         } else {
-            window.alert("Vous ne pouvez pas ajouter plus de montagnes, veuillez valider ou annuler votre sélection");
+            alert("Vous ne pouvez pas ajouter plus de montagnes, veuillez valider ou annuler votre sélection");
         }
     });
 
-    for (let cell of gridRefs.current) {
-        cell.addEventListener("click", handleCellClick);        
+    if (enableComp) {
+        for (let cell of gridRefs.current) {
+            cell.addEventListener("click", handleCellClick);        
+        }
     }
 
     const validateMountains = () => {
+        for (let cell of gridRefs.current) {
+            cell.removeEventListener("click", handleCellClick);            
+        }
+
         onSubmit({
-            registeredGrid
+            registeredGrid,
+            gridRefs
         });
+
+        setEnableComp(false);
     }
 
     const cancelSelection = () => {
@@ -62,23 +73,30 @@ const InputGridMountains = (props: any) => {
 
     return (
         <>
-            <h3 className="sub-header text-center mb-4">Maintenant, ajoutons les montagnes sur la carte</h3>
-
-            <p className="text-center text-muted mb-5 fst-italic">La règle stipule que les aventuriers ne pourront pas se déplacer dans les endroits montagneux</p>
-
-            <p className="text-center mb-5 fw-bold color-primary">Veuillez sélectionner jusqu'à {maxMountains} montagnes</p>
-
-            {showButtons && (
-                <div className="d-flex justify-content-around mb-5">
-                    <Button className="ButtonPrimaryCustom" onClick={validateMountains} type="submit">
-                        Valider
-                    </Button>
-                    <Button className="ButtonSecondaryCustom" onClick={cancelSelection}>
-                        Annuler
-                    </Button>
-                </div>
+            {!enableComp && (
+                null
             )}
-            
+
+            {enableComp && (
+                <>
+                    <h3 className="sub-header text-center mb-4">Maintenant, ajoutons les montagnes sur la carte</h3>
+
+                    <p className="text-center text-muted mb-5 fst-italic">La règle stipule que les aventuriers ne pourront pas se déplacer dans les endroits montagneux</p>
+
+                    <p className="text-center mb-5 fw-bold color-primary">Veuillez placer jusqu'à {maxMountains} montagnes</p>
+
+                    {showButtons && (
+                        <div className="d-flex justify-content-around mb-5">
+                            <Button className="ButtonPrimaryCustom" onClick={validateMountains} type="submit">
+                                Valider
+                            </Button>
+                            <Button className="ButtonSecondaryCustom" onClick={cancelSelection}>
+                                Annuler
+                            </Button>
+                        </div>
+                    )}
+                </>
+            )}
         </>
     );
 

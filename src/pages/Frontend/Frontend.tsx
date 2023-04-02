@@ -1,17 +1,19 @@
 import { Container } from "react-bootstrap";
 import InputGridLayout from "./components/InputGridLayout/InputGridLayout";
 import InputGridMountains from "./components/InputGridMountains/InputGridMountains";
+import InputGridTreasures from "./components/InputGridTreasures/InputGridTreasures";
 import { useState, useEffect, useRef } from "react";
 import "./Frontend.scss";
 import { GridLayoutProps } from "./models/GridLayoutProps";
 import { GridSpot } from "./models/GridSpot";
 import { Stepper } from "react-form-stepper";
+import { ConsolidatedGrid } from './models/ConsolidatedGrid';
 
 const Frontend = () => {
     
     const [registeredGrid, setRegisteredGrid]: any[] = useState([]);
     const [displayGrid, setDisplayGrid]: any[] = useState([]);
-    const gridRefs = useRef([]);
+    let gridRefs = useRef([]);
 
     const [step, setStep] = useState<number>(0);
 
@@ -35,6 +37,7 @@ const Frontend = () => {
                     <span
                         id={row + "-" + col}
                         key={row + "-" + col}
+                        // eslint-disable-next-line
                         ref={(elem: never) => gridRefs.current.push(elem)}
                         className="cell"
                     >
@@ -78,8 +81,11 @@ const Frontend = () => {
         }
     }, [step]);
 
-    const updateGrid = (updatedGrid: GridSpot[][]) => {
-        setRegisteredGrid(updatedGrid);
+    const updateGrid = (updatedGrid: ConsolidatedGrid) => { 
+        console.log(updatedGrid);
+        
+        gridRefs = updatedGrid.updatedGridRefs;
+        setRegisteredGrid(updatedGrid.registeredGrid);
         setStep(step + 1);
     }
 
@@ -93,7 +99,7 @@ const Frontend = () => {
                 className="mb-5"
             />
 
-            {showInputGridLayout && 
+            {showInputGridLayout &&
                 <InputGridLayout onSubmit={createInitialGrid} />
             }
 
@@ -102,7 +108,7 @@ const Frontend = () => {
             }
 
             {showInputGridTreasures &&
-                <p>Coucou</p>
+                <InputGridTreasures gridRefs={gridRefs} registeredGrid={registeredGrid} onSubmit={updateGrid} />
             }
 
             {showInputGridAdventurer &&

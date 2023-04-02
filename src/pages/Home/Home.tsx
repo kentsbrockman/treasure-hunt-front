@@ -13,7 +13,7 @@ const Home = () => {
 
     const saveUsername = (e: FormEvent<HTMLFormElement>) => {
         if (usernameRef.current.value === "Easter Egg") {
-            window.alert("GG si tu l'as vu sans être allé dans le code 😎");
+            alert("GG si tu l'as vu sans être allé dans le code 😎");
         }
         e.preventDefault();
         setAdventurer(usernameRef.current.value);
