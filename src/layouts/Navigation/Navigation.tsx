@@ -19,19 +19,11 @@ const Navigation = ({switchTheme}: any) => {
 
         <div className="navigation-links">
             <NavLink
-                to="/frontend"
+                to="/adventure"
                 className="navlink"
                 style={{color: theme.text}}
             >
-                Frontend
-            </NavLink>
-
-            <NavLink
-                to="/backend"
-                className="navlink"
-                style={{color: theme.text}}
-            >
-                Backend
+                Aventure
             </NavLink>
 
             <NavLink

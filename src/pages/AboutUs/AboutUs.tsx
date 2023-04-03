@@ -13,8 +13,8 @@ const AboutUs = () => {
           style={{height: "200px"}}
         />
         <h5 className="text-muted my-3">Quentin P.</h5>
-        <div className="fst-italic mt-3">
-            <p>Transformer les insights créateurs de valeur permet assurément <br/>de boostrapper des clusters from scratch et in fine de sanctuariser une overview disruptive.</p>
+        <div className="fst-italic mt-3 height-1-5">
+            <p>Transformer des insights créateurs de valeur permet assurément <br/>de boostrapper les clusters from scratch et in fine de sanctuariser une overview disruptive.</p>
         </div>
     </div>
   );

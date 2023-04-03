@@ -50,24 +50,37 @@ $base-color-dark: #042563;
 $secondary-color: #ad7307;
 $secondary-color-variant: #7c5205;
 
+$success-color: #41ad07;
+$success-color-variant: #2f7c05;
+
 .ButtonPrimaryCustom {
-  background-color: $base-color !important;
-  border-color: $base-color !important;
+    background-color: $base-color !important;
+    border-color: $base-color !important;
 }
 
 .ButtonPrimaryCustom:hover {
-  background-color: $base-color-variant !important;
-  border-color: $base-color-variant !important;
+    background-color: $base-color-variant !important;
+    border-color: $base-color-variant !important;
 }
 
 .ButtonSecondaryCustom {
-  background-color: $secondary-color !important;
-  border-color: $secondary-color !important;
+    background-color: $secondary-color !important;
+    border-color: $secondary-color !important;
 }
 
 .ButtonSecondaryCustom:hover {
-  background-color: $secondary-color-variant !important;
-  border-color: $secondary-color-variant !important;
+    background-color: $secondary-color-variant !important;
+    border-color: $secondary-color-variant !important;
+}
+
+.ButtonSuccessCustom {
+    background-color: $success-color !important;
+    border-color: $success-color !important;
+}
+  
+.ButtonSuccessCustom:hover {
+    background-color: $success-color-variant !important;
+    border-color: $success-color-variant !important;
 }
 
 .margin-right-1 {
@@ -192,4 +205,8 @@ input[type="range"]::-ms-thumb {
 
 .pointer-events-none {
     pointer-events: none;
+}
+
+.height-1-5 {
+    line-height: 1.5;
 }

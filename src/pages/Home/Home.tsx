@@ -30,24 +30,15 @@ const Home = () => {
                 <Col>
                     {adventurer && (
                         <div className="adventurer-container">
-                            <div className="w-100">
-                                <h2 className="landing-header text-center mb-5">Bienvenue {adventurer}</h2>
-                                <div className="d-flex justify-content-around">
-                                    <NavLink
-                                        to="/frontend"
-                                    >
-                                        <Button className="ButtonPrimaryCustom" size="sm">
-                                            Démarrer l'expérience en Frontend
-                                        </Button>
-                                    </NavLink>
-                                    <NavLink
-                                        to="/backend"
-                                    >
-                                        <Button className="ButtonSecondaryCustom" size="sm">
-                                            Démarrer l'expérience en Backend
-                                        </Button>
-                                    </NavLink>
-                                </div>
+                            <div className="w-100 text-center">
+                                <h2 className="landing-header mb-5">Bienvenue {adventurer}</h2>
+                                <NavLink
+                                    to="/adventure"
+                                >
+                                    <Button className="ButtonPrimaryCustom" size="sm">
+                                        Démarrer l'aventure
+                                    </Button>
+                                </NavLink>
                             </div>
                         </div>
                     )}

@@ -6,8 +6,7 @@ import { GlobalStyle } from "./style/Darkmode/Globalstyle";
 import Navigation from "./layouts/Navigation/Navigation";
 import Footer from "./layouts/Footer/Footer";
 import Home from "./pages/Home/Home";
-import Frontend from "./pages/Frontend/Frontend";
-import Backend from "./pages/Backend/Backend";
+import Adventure from "./pages/Adventure/Adventure";
 import PageNotFound from "./pages/PageNotFound/PageNotFound";
 import AboutUs from "./pages/AboutUs/AboutUs";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -41,13 +40,8 @@ function App() {
                             />
 
                             <Route
-                                path="/frontend"
-                                element={<Frontend />}
-                            />
-                            
-                            <Route
-                                path="/backend"
-                                element={<Backend />}
+                                path="/adventure"
+                                element={<Adventure />}
                             />
 
                             <Route

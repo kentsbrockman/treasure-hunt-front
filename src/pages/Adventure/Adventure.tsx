@@ -2,15 +2,19 @@ import { Container } from "react-bootstrap";
 import InputGridLayout from "./components/InputGridLayout/InputGridLayout";
 import InputGridMountains from "./components/InputGridMountains/InputGridMountains";
 import InputGridTreasures from "./components/InputGridTreasures/InputGridTreasures";
+import InputGridAdventurer from "./components/InputGridAdventurer/InputGridAdventurer";
+import InputMovements from "./components/InputMovements/InputMovements";
 import { useState, useEffect, useRef } from "react";
-import "./Frontend.scss";
+import "./Adventure.scss";
 import { GridLayoutProps } from "./models/GridLayoutProps";
 import { GridSpot } from "./models/GridSpot";
 import { Stepper } from "react-form-stepper";
-import { ConsolidatedGrid } from './models/ConsolidatedGrid';
-import InputGridAdventurer from './components/InputGridAdventurer/InputGridAdventurer';
+import { ConsolidatedGrid } from "./models/ConsolidatedGrid";
+import { Orientation } from "./enums/Orientation";
+import { RandomEnum } from "../../utils/RandomEnum";
 
-const Frontend = () => {
+
+const Adventure = () => {
     
     const [registeredGrid, setRegisteredGrid]: any[] = useState([]);
     const [displayGrid, setDisplayGrid]: any[] = useState([]);
@@ -25,27 +29,20 @@ const Frontend = () => {
     const [showInputGridAdventurer, setShowInputGridAdventurer] = useState<boolean>(false);
     const [showInputGridMovements, setShowInputGridMovements] = useState<boolean>(false);
 
+    const [orientation, setOrientation] = useState<Orientation>(RandomEnum(Orientation));    
+
     const createInitialGrid = (gridLayout: GridLayoutProps) => {
         const initialGrid: GridSpot[][] = new Array(gridLayout.nbRows).fill(undefined);
         const displayGrid = [];
 
         for (let row in initialGrid) {            
             initialGrid[row] = new Array(gridLayout.nbColumns).fill(undefined);
-            const cells = [];
+
+            let cells = [];
 
             for (let col in initialGrid[row]) {
                 initialGrid[row][col] = {x: Number(row), y: Number(col), adventurer: false, mountain: false, treasure: {present: false, count: 0}};
-                cells.push(
-                    <span
-                        id={row + "-" + col}
-                        key={row + "-" + col}
-                        // eslint-disable-next-line
-                        ref={(elem: never) => gridRefs.current.push(elem)}
-                        className="cell"
-                    >
-                        {row + "-" + col}
-                    </span>
-                );
+                cells = createCells(row, col, cells); 
             }
 
             displayGrid.push(
@@ -58,6 +55,21 @@ const Frontend = () => {
         setRegisteredGrid(initialGrid);
         setDisplayGrid(displayGrid);
         setStep(step + 1);
+    }
+
+    const createCells = (row: string, col: string, cells: any[]) => {
+        cells.push(
+            <span
+                id={row + "-" + col}
+                key={row + "-" + col}
+                ref={(elem: never) => gridRefs.current.push(elem)}
+                className="cell"
+            >
+                {row + "-" + col}
+            </span>
+        );
+
+        return cells;
     }
 
     useEffect(() => {
@@ -84,17 +96,21 @@ const Frontend = () => {
         }
     }, [step]);
 
-    const updateGrid = (updatedGrid: ConsolidatedGrid) => { 
-        console.log(updatedGrid);
-        
+    const updateGrid = (updatedGrid: ConsolidatedGrid) => {        
         gridRefs = updatedGrid.updatedGridRefs;
         setRegisteredGrid(updatedGrid.registeredGrid);
         setStep(step + 1);
     }
 
+    const registerMovementSequence = (movementSequence: any) => {        
+        console.log(movementSequence);
+    }
+
     return (
         <Container>
-            <h2 className="header text-center mb-5">Partez à l'aventure</h2>
+            {/* <h2 className="header text-center mb-5">Partez à l'aventure</h2> */}
+
+            <InputMovements gridRefs={gridRefs} initialOrientation={orientation} onSubmit={registerMovementSequence} />
 
             {showStepper && 
                 <Stepper
@@ -126,7 +142,7 @@ const Frontend = () => {
             }
 
             {showInputGridMovements &&
-                <p>Coucou</p>
+                <InputMovements gridRefs={gridRefs} initialOrientation={orientation} onSubmit={registerMovementSequence} />
             }
 
             {displayGrid}
@@ -136,4 +152,4 @@ const Frontend = () => {
 
 };
 
-export default Frontend;
+export default Adventure;
