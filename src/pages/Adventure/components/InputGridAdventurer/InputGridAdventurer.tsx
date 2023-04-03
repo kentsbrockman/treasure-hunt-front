@@ -25,6 +25,7 @@ const InputGridAdventurer = (props: any) => {
             const clickedRow = event.currentTarget.id[0];
             const clickedCol = event.currentTarget.id[2];
             registeredGrid[clickedRow][clickedCol].adventurer = true;
+            registeredGrid[clickedRow][clickedCol].visited = [1];
         }   
     });
 
@@ -59,6 +60,7 @@ const InputGridAdventurer = (props: any) => {
         registeredGrid.map((row: []) => {
             row.map((cell: GridSpot) => {
                 cell.adventurer = false;
+                cell.visited = [];
                 return cell;
             })
             return row;

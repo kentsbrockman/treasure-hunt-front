@@ -23,7 +23,7 @@ const InputGridTreasures = (props: any) => {
 
         if (treasureCount < maxTreasures) {
 
-            const nbTreasures: string | null = prompt("Combien de trésors souhaitez-vous placer ici ?")
+            const nbTreasures: string | null = prompt("Combien de coffres souhaitez-vous placer ici ?")
 
             if (Number(nbTreasures)) {
                 const treasureImg = document.createElement("img");
@@ -32,7 +32,11 @@ const InputGridTreasures = (props: any) => {
                 treasureImg.style.height = treasureIconSize;
                 event.currentTarget.textContent = "";
                 event.currentTarget.appendChild(treasureImg);
-                event.currentTarget.classList.add("pointer-events-none");
+
+                const nbChests = document.createElement("p");
+                nbChests.textContent = "Nombre de coffres : " + nbTreasures;
+                event.currentTarget.appendChild(nbChests);
+                event.currentTarget.classList.add("treasure-spot");
 
                 const clickedRow = event.currentTarget.id[0];
                 const clickedCol = event.currentTarget.id[2];

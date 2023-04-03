@@ -1,86 +1,84 @@
 import { FormEvent, useState } from "react";
-import { Form, Button, Col, Row } from "react-bootstrap";
-import RangeSlider from "react-bootstrap-range-slider";
+import { Form, Button, Col } from "react-bootstrap";
+import { Movement } from "../../enums/Movement";
+import { BsFillArrowLeftSquareFill, BsFillArrowUpSquareFill, BsFillArrowRightSquareFill } from "react-icons/bs";
 
 const InputMovements = (props: any) => {
 
     const {gridRefs, initialOrientation, onSubmit} = props;
 
-    const [movementCount, setMovementCount] = useState<number>(0);
-    const maxMovements: number = 9
-    //Number(gridRefs.current.length);
+    const [movementSequence, setMovementSequence] = useState<Movement[]>([]);
+    const maxMovements: number = Number(gridRefs.current.length);
 
-    const validateGridLayout = (e: FormEvent<HTMLFormElement>) => {
+    const [enableComp, setEnableComp] = useState<boolean>(true);
+
+    const updateMovementSequence = (movement: Movement) => {
+        if (movementSequence.length === maxMovements) {
+            alert("Vous ne pouvez pas ajouter plus de mouvements à la séquence. Veuillez valider ou annuler votre sélection.")
+            return;
+        }
+
+        setMovementSequence([...movementSequence, movement]);
+    }
+
+    const validateMovementSequence = (e: FormEvent<HTMLFormElement>) => {
+        setEnableComp(false);
+
         e.preventDefault();
-        onSubmit({
-            
-        });
+        onSubmit(movementSequence);
     }
 
     return (
+        <div className="InputMovements">
+            {!enableComp && (
+                null
+            )}
 
-        <>
-            <h3 className="sub-header text-center mb-3">Let's go !</h3>
+            {enableComp && (
+                <>
+                    <h3 className="sub-header text-center mb-3">Let's go !</h3>
 
-            <h3 className="sub-header text-center mb-3">Saisissez la séquence de mouvements à réaliser pour récupérer un maximum de trésors</h3>
+                    <h3 className="sub-header text-center mb-3">Saisissez maintenant la séquence de mouvements à réaliser pour récupérer un maximum de trésors</h3>
 
-            <p className="text-center text-muted mb-5 fst-italic">Pour cette partie, vous débutez en étant orienté {initialOrientation}</p>
+                    <p className="text-center text-muted mb-5 fst-italic">Pour cette partie, vous débutez en étant orienté {initialOrientation}</p>
 
-            <p className="text-center mb-5 fw-bold color-primary">Veuillez saisir jusqu'à {maxMovements} mouvements</p>
+                    <p className="text-center mb-5 fw-bold color-primary">Veuillez saisir jusqu'à {maxMovements} mouvements</p>
 
-            <div className="d-flex justify-content-around">
-                <Button className="ButtonSuccessCustom w-10" size="sm" type="submit">
-                    Tourner à gauche
-                </Button>                
-                <Button className="ButtonSuccessCustom w-10" size="sm" type="submit">
-                    Avancer
-                </Button>
-                <Button className="ButtonSuccessCustom w-10" size="sm" type="submit">
-                    Tourner à droite
-                </Button>
-            </div>
+                    <div className="d-flex justify-content-around mb-5"> 
+                        <BsFillArrowLeftSquareFill size={50} color="#0741ad" className="cursor-pointer" onClick={() => updateMovementSequence(Movement.Left)} />
 
+                        <BsFillArrowUpSquareFill size={50} color="#0741ad" className="cursor-pointer" onClick={() => updateMovementSequence(Movement.Forward)} />
 
+                        <BsFillArrowRightSquareFill size={50} color="#0741ad" className="cursor-pointer" onClick={() => updateMovementSequence(Movement.Right)} />               
+                    </div>
 
-            {/* <Form className="margin-left-5 margin-right-5" onSubmit={validateGridLayout}>
-                <Form.Group className="mb-3" as={Row}>
-                    <Col sm={4}>
-                        <Form.Label className="fw-bold">Nombre de colonnes</Form.Label>
-                    </Col>
-                    <Col sm={8}>                
-                        <RangeSlider
-                            value={nbColumns}
-                            onChange={e => setNbColumns(parseInt(e.target.value))}
-                            min={minCols}
-                            max={maxCols}
-                        />
-                    </Col>
-                </Form.Group>
+                    <Form className="d-flex justify-content-center mb-5" onSubmit={validateMovementSequence}>
+                        <Col>
+                            <Form.Group className="mb-5">
+                                <Form.Control
+                                    value={movementSequence.join(", ")}
+                                    placeholder="Séquence de mouvements"
+                                    aria-label="Display chosen movement sequence"
+                                    readOnly 
+                                />
+                            </Form.Group>                    
 
-                <Form.Group className="mb-5" as={Row}>
-                    <Col sm={4}>
-                        <Form.Label className="fw-bold">Nombre de lignes</Form.Label>
-                    </Col>
-                    <Col sm={8}>                
-                        <RangeSlider
-                            value={nbRows}
-                            onChange={e => setNbRows(parseInt(e.target.value))}
-                            min={minRows}
-                            max={maxRows}
-                        />
-                    </Col>
-                </Form.Group>
+                            {movementSequence.length > 0 && (
+                                <div className="d-flex justify-content-around">
+                                    <Button className="ButtonPrimaryCustom w-10" type="submit">
+                                        Valider
+                                    </Button>
+                                    <Button className="ButtonSecondaryCustom w-10" onClick={() => setMovementSequence([])}>
+                                        Annuler
+                                    </Button>
+                                </div>
+                            )}
+                        </Col>
 
-                    
-
-                <div className="d-flex justify-content-center">
-                    <Button className="ButtonPrimaryCustom w-10" size="lg" type="submit">
-                        Valider
-                    </Button>
-                </div>
-                
-            </Form> */}
-        </>
+                    </Form>
+                </>
+            )}
+        </div>
     );
 };
 

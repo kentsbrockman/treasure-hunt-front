@@ -210,3 +210,17 @@ input[type="range"]::-ms-thumb {
 .height-1-5 {
     line-height: 1.5;
 }
+
+.treasure-spot {
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+    font-size: xx-small;
+    font-weight: bold;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
