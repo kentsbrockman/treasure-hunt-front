@@ -62,7 +62,7 @@ const Home = () => {
                                     <Form.Control
                                         ref={usernameRef}
                                         type="text"
-                                        pattern="\w{3,24}"
+                                        pattern="^[ \S\u00A0]{3,24}$"
                                         title="Votre nom d'utilisateur doit être composé de 3 à 24 caractères."
                                         placeholder="Nathan Drake, Lara Croft, Indiana Jones..." />
                                 </Form.Group>
