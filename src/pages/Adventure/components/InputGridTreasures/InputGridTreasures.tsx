@@ -10,7 +10,7 @@ const InputGridTreasures = (props: any) => {
     const [treasureCount, setTreasureCount] = useState<number>(0);
     const maxTreasures: number = Math.floor(Number(gridRefs.current.length) / 5);
     const treasureIconSize = "40px";
-    const treasureString: string = maxTreasures > 1 ? "trésors" : "trésor"
+    const treasureString: string = maxTreasures > 1 ? "zones de trésors" : "zone de trésors"
 
     const [showButtons, setShowButtons] = useState<boolean>(false);
 
@@ -40,7 +40,7 @@ const InputGridTreasures = (props: any) => {
 
                 const clickedRow = event.currentTarget.id[0];
                 const clickedCol = event.currentTarget.id[2];
-                registeredGrid[clickedRow][clickedCol].treasure = {present: true, count: Number(nbTreasures)};
+                registeredGrid[clickedRow][clickedCol].treasure = Number(nbTreasures);
                 setTreasureCount(treasureCount + 1);
             } else {
                 alert("La saisie du nombre de trésors est invalide. Veuillez réessayer")
@@ -81,7 +81,7 @@ const InputGridTreasures = (props: any) => {
 
         registeredGrid.map((row: []) => {
             row.map((cell: GridSpot) => {
-                cell.treasure = {present: false, count: 0};
+                cell.treasure = 0;
                 return cell;
             })
             return row;

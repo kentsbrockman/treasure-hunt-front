@@ -1,14 +1,9 @@
 .Navigation {
     display: flex;
     align-items: center;
-    margin-right: 2em;
-}
-
-.navigation-links {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    margin-right: auto;
+    justify-content: space-between;
+    padding-right: 2em;
+    justify-content: space-between;
 }
 
 .navlink {

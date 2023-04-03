@@ -11,29 +11,25 @@ const Navigation = ({switchTheme}: any) => {
 
   return (
     <Navbar className="Navigation" expand="lg">
-        <Navbar.Brand>
-            <NavLink to="/">
+        <NavLink to="/">
             <img src={logo} alt="Navbar brand logo" style={{ height: "150px" }} />
-            </NavLink>
-        </Navbar.Brand>
+        </NavLink>
 
-        <div className="navigation-links">
-            <NavLink
-                to="/adventure"
-                className="navlink"
-                style={{color: theme.text}}
-            >
-                Aventure
-            </NavLink>
+        <NavLink
+            to="/adventure"
+            className="navlink"
+            style={{color: theme.text}}
+        >
+            Aventure
+        </NavLink>
 
-            <NavLink
-                to="/aboutus"
-                className="navlink"
-                style={{color: theme.text}}
-            >
-                À propos
-            </NavLink>
-        </div>
+        <NavLink
+            to="/aboutus"
+            className="navlink"
+            style={{color: theme.text}}
+        >
+            À propos
+        </NavLink>
 
         <IOSSwitch onClick={switchTheme} />
     </Navbar>

@@ -45,11 +45,11 @@ const InputMovements = (props: any) => {
                     <p className="text-center mb-5 fw-bold color-primary">Veuillez saisir jusqu'à {maxMovements} mouvements</p>
 
                     <div className="d-flex justify-content-around mb-5"> 
-                        <BsFillArrowLeftSquareFill size={50} color="#0741ad" className="cursor-pointer" onClick={() => updateMovementSequence(Movement.Left)} />
+                        <BsFillArrowLeftSquareFill size={50} color="#0741ad" className="cursor-pointer custom-hover-icon" onClick={() => updateMovementSequence(Movement.Left)} />
 
-                        <BsFillArrowUpSquareFill size={50} color="#0741ad" className="cursor-pointer" onClick={() => updateMovementSequence(Movement.Forward)} />
+                        <BsFillArrowUpSquareFill size={50} color="#0741ad" className="cursor-pointer custom-hover-icon" onClick={() => updateMovementSequence(Movement.Forward)} />
 
-                        <BsFillArrowRightSquareFill size={50} color="#0741ad" className="cursor-pointer" onClick={() => updateMovementSequence(Movement.Right)} />               
+                        <BsFillArrowRightSquareFill size={50} color="#0741ad" className="cursor-pointer custom-hover-icon" onClick={() => updateMovementSequence(Movement.Right)} />               
                     </div>
 
                     <Form className="d-flex justify-content-center mb-5" onSubmit={validateMovementSequence}>

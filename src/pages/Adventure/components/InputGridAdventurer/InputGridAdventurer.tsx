@@ -4,13 +4,11 @@ import useEventCallback from "use-event-callback";
 import { GridSpot } from "../../models/GridSpot";
 
 const InputGridAdventurer = (props: any) => {
-    const {gridRefs, registeredGrid, onSubmit} = props;
+    const {adventurer, gridRefs, registeredGrid, onSubmit} = props;
 
     const [showButtons, setShowButtons] = useState<boolean>(false);
 
     const [enableComp, setEnableComp] = useState<boolean>(true);
-
-    const adventurer = sessionStorage.getItem("TREASURE_HUNT_REGISTERED_ADVENTURER") ? sessionStorage.getItem("TREASURE_HUNT_REGISTERED_ADVENTURER")?.replace(/(['"])/g, "") : "Aventurier";
 
     const handleCellClick = useEventCallback((event: React.MouseEvent<HTMLSpanElement>) => {        
         if (!showButtons) {

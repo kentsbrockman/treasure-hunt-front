@@ -224,3 +224,7 @@ input[type="range"]::-ms-thumb {
 .cursor-pointer {
     cursor: pointer;
 }
+
+.custom-hover-icon :hover {
+    color: $base-color-variant;
+}

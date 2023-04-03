@@ -17,6 +17,8 @@ import GameService from "./services/GameService";
 
 
 const Adventure = () => {
+
+    const adventurer = sessionStorage.getItem("TREASURE_HUNT_REGISTERED_ADVENTURER") ? sessionStorage.getItem("TREASURE_HUNT_REGISTERED_ADVENTURER")?.replace(/(['"])/g, "") : "Aventurier Inconnu";
     
     const [registeredGrid, setRegisteredGrid]: any[] = useState([]);
     const [displayGrid, setDisplayGrid]: any[] = useState([]);
@@ -50,7 +52,7 @@ const Adventure = () => {
             let cells = [];
 
             for (let col in initialGrid[row]) {
-                initialGrid[row][col] = {x: Number(row), y: Number(col), adventurer: false, mountain: false, treasure: {present: false, count: 0}, visited: []};
+                initialGrid[row][col] = {x: Number(row), y: Number(col), adventurer: false, mountain: false, treasure: 0, visited: []};
                 cells = createCells(row, col, cells); 
             }
 
@@ -160,7 +162,7 @@ const Adventure = () => {
             }
 
             {showInputGridAdventurer &&
-                <InputGridAdventurer gridRefs={gridRefs} registeredGrid={registeredGrid} onSubmit={updateGrid} />
+                <InputGridAdventurer adventurer={adventurer} gridRefs={gridRefs} registeredGrid={registeredGrid} onSubmit={updateGrid} />
             }
 
             {showInputGridMovements &&
@@ -170,11 +172,11 @@ const Adventure = () => {
             {displayGrid}
 
             {showFinalMessage && treasuresCollected === 0 &&
-                <h2 className="header text-center mt-5 height-1-5">Vous avez terminé le jeu.<br/> Cependant vous n'avez pas récupéré de trésors 😭<br/>Nous espérons que vous aurez plus de chance la prochaine fois !</h2>
+                <h2 className="header text-center mt-5 height-1-5">Vous avez terminé le jeu {adventurer}.<br/> Cependant vous n'avez pas récupéré de trésors 😭<br/>Nous espérons que vous aurez plus de chance la prochaine fois !</h2>
             }
 
             {showFinalMessage && treasuresCollected > 0 &&
-                <h2 className="header text-center mt-5 height-1-5">Félicitations, vous avez remporté {treasuresCollected} {treasuresString} 😍 !</h2>
+                <h2 className="header text-center mt-5 height-1-5">Félicitations {adventurer}, vous avez remporté {treasuresCollected} {treasuresString} 😍 !</h2>
             }
         </Container>
     );

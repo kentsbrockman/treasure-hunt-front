@@ -1,7 +1,7 @@
 import { GridSpot } from "../models/GridSpot";
 import { Movement } from "../enums/Movement";
 import { Orientation } from "../enums/Orientation";
-import { filter2DArray } from '../../../utils/Filter2DArray';
+import { filter2DArray } from "../../../utils/Filter2DArray";
 
 const GameService = () => {
 
@@ -79,14 +79,14 @@ const GameService = () => {
                     finalGrid[Number(newPosition.x)][Number(newPosition.y)].adventurer = true;
                     finalGrid[Number(newPosition.x)][Number(newPosition.y)].visited?.push(round + 1);
 
-                    if (treasureCollected(newPosition)) {
-                        collectedTreasures += 1;
-                        
-                        let currentTreasureCount = finalGrid[Number(newPosition.x)][Number(newPosition.y)]?.treasure?.count;
+                    if (newPosition.treasure && newPosition.treasure > 0) {
+                        finalGrid[Number(newPosition.x)][Number(newPosition.y)].adventurer = true;
 
-                        if (currentTreasureCount !== undefined) {
-                            currentTreasureCount -= 1;
-                        }
+                        collectedTreasures += 1;
+
+                        const currentTreasureCount: any = finalGrid[Number(newPosition.x)][Number(newPosition.y)].treasure;
+
+                        finalGrid[Number(newPosition.x)][Number(newPosition.y)].treasure = currentTreasureCount - 1;
                     }
                 }
             }
@@ -94,10 +94,6 @@ const GameService = () => {
         }
 
         return {finalGrid, collectedTreasures};
-    }
-
-    const treasureCollected = (newPosition: GridSpot) => {
-        return newPosition.treasure && newPosition.treasure.present && newPosition.treasure.count && newPosition.treasure.count > 0
     }
 
     const displayFinalGrid = () => {
