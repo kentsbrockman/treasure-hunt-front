@@ -88,7 +88,7 @@ const InputGridTreasures = (props: any) => {
     }
 
     return (
-        <>
+        <div className="InputGridTreasures">
             {!enableComp && (
                 null
             )}
@@ -101,7 +101,7 @@ const InputGridTreasures = (props: any) => {
 
                     {showButtons && (
                         <div className="d-flex justify-content-around mb-5">
-                            <Button className="ButtonPrimaryCustom" onClick={validateTreasures} type="submit">
+                            <Button className="ButtonPrimaryCustom" onClick={validateTreasures}>
                                 Valider
                             </Button>
                             <Button className="ButtonSecondaryCustom" onClick={cancelSelection}>
@@ -112,7 +112,7 @@ const InputGridTreasures = (props: any) => {
                     
                 </>
             )}
-        </>
+        </div>
     );
 
 };

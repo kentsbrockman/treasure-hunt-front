@@ -68,7 +68,7 @@ const InputGridAdventurer = (props: any) => {
     }
 
     return (
-        <>
+        <div className="InputGridAdventurer">
             {!enableComp && (
                 null
             )}
@@ -79,7 +79,7 @@ const InputGridAdventurer = (props: any) => {
 
                     {showButtons && (
                         <div className="d-flex justify-content-around mb-5">
-                            <Button className="ButtonPrimaryCustom" onClick={validateAdventurer} type="submit">
+                            <Button className="ButtonPrimaryCustom" onClick={validateAdventurer}>
                                 Valider
                             </Button>
                             <Button className="ButtonSecondaryCustom" onClick={cancelSelection}>
@@ -90,7 +90,7 @@ const InputGridAdventurer = (props: any) => {
                     
                 </>
             )}
-        </>
+        </div>
     );
 
 };

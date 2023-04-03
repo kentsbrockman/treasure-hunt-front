@@ -21,7 +21,7 @@ const Home = () => {
 
     return (
 
-        <Container fluid>
+        <Container fluid className="Home">
             <Row>
                 <Col>
                     <LottieAnimation lotti={jumbotronlanding} width={400} height={400} />

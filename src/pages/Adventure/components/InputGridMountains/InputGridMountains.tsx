@@ -72,7 +72,7 @@ const InputGridMountains = (props: any) => {
     }
 
     return (
-        <>
+        <div className="InputGridMountains">
             {!enableComp && (
                 null
             )}
@@ -87,7 +87,7 @@ const InputGridMountains = (props: any) => {
 
                     {showButtons && (
                         <div className="d-flex justify-content-around mb-5">
-                            <Button className="ButtonPrimaryCustom" onClick={validateMountains} type="submit">
+                            <Button className="ButtonPrimaryCustom" onClick={validateMountains}>
                                 Valider
                             </Button>
                             <Button className="ButtonSecondaryCustom" onClick={cancelSelection}>
@@ -97,7 +97,7 @@ const InputGridMountains = (props: any) => {
                     )}
                 </>
             )}
-        </>
+        </div>
     );
 
 };

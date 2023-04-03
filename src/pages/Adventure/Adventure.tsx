@@ -107,7 +107,7 @@ const Adventure = () => {
     }
 
     return (
-        <Container>
+        <Container className="Adventure">
             {/* <h2 className="header text-center mb-5">Partez à l'aventure</h2> */}
 
             <InputMovements gridRefs={gridRefs} initialOrientation={orientation} onSubmit={registerMovementSequence} />
