@@ -4,11 +4,11 @@ import RangeSlider from "react-bootstrap-range-slider";
 
 const InputGridLayout = ({ onSubmit }: any) => {
 
-    const [nbColumns, setNbColumns] = useState<number>(3);
+    const [nbColumns, setNbColumns] = useState<number>(5);
     const minCols: number = 3;
     const maxCols: number = 9;
 
-    const [nbRows, setNbRows] = useState<number>(3);
+    const [nbRows, setNbRows] = useState<number>(6);
     const minRows: number = 3;
     const maxRows: number = 9;
 
