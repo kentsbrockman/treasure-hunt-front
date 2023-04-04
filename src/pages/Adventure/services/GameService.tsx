@@ -82,9 +82,8 @@ const GameService = () => {
                 if (orientation === Orientation.West) {
                     newPosition = filter2DArray(finalGrid, "y", (Number(currentPosition.y) - 1)).filter(position => position.x === currentPosition.x)[0];
                 }
-                
 
-                if (newPosition !== undefined && newPosition.mountain === false) {
+                if (newPosition && !newPosition.mountain) {
                     finalGrid[Number(currentPosition.x)][Number(currentPosition.y)].adventurer = false;
                     finalGrid[Number(newPosition.x)][Number(newPosition.y)].adventurer = true;
                     finalGrid[Number(newPosition.x)][Number(newPosition.y)].visited?.push(round);
