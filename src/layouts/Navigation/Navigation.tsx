@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import { Navbar } from "react-bootstrap";
 import logo from "assets/images/logo.png";
 import { useContext } from "react";
 import { ThemeContext } from "styled-components";
@@ -10,7 +9,7 @@ const Navigation = ({switchTheme}: any) => {
   const theme = useContext(ThemeContext);
 
   return (
-    <Navbar className="Navigation" expand="lg">
+    <div className="Navigation">
         <NavLink to="/">
             <img src={logo} alt="Navbar brand logo" style={{ height: "150px" }} />
         </NavLink>
@@ -32,7 +31,7 @@ const Navigation = ({switchTheme}: any) => {
         </NavLink>
 
         <IOSSwitch onClick={switchTheme} />
-    </Navbar>
+    </div>
   );
 };
 

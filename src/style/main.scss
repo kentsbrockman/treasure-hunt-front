@@ -217,8 +217,19 @@ input[type="range"]::-ms-thumb {
     flex-direction: column;
     justify-content: space-evenly;
     text-align: center;
-    font-size: xx-small;
     font-weight: bold;
+}
+
+.treasure-spot p {
+    font-size: xx-small;
+}
+
+.font-size-medium {
+    font-size: medium;
+}
+
+.font-size-large {
+    font-size: large;
 }
 
 .cursor-pointer {

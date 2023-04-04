@@ -115,9 +115,12 @@ const Adventure = () => {
     const runMovementSequence = (movementSequence: Movement[]) => {      
         setShowInputGridMovements(false);
         
-        const {finalGrid, collectedTreasures} = processMovementSequence(registeredGrid, movementSequence, initialOrientation);
+        const {finalGrid, collectedTreasures} = processMovementSequence(registeredGrid, movementSequence, initialOrientation, gridRefs);
 
         setRegisteredGrid(finalGrid);
+
+
+
         setTreasuresCollected(collectedTreasures);
 
         if (collectedTreasures === 1) {
@@ -172,11 +175,11 @@ const Adventure = () => {
             {displayGrid}
 
             {showFinalMessage && treasuresCollected === 0 &&
-                <h2 className="header text-center mt-5 height-1-5">Vous avez terminé le jeu {adventurer}.<br/> Cependant vous n'avez pas récupéré de trésors 😭<br/>Nous espérons que vous aurez plus de chance la prochaine fois !</h2>
+                <h2 className="sub-header text-center mt-5 height-1-5">Vous avez terminé le jeu {adventurer}.<br/> Cependant vous n'avez pas récupéré de trésors 😭<br/>Nous espérons que vous aurez plus de chance la prochaine fois !</h2>
             }
 
             {showFinalMessage && treasuresCollected > 0 &&
-                <h2 className="header text-center mt-5 height-1-5">Félicitations {adventurer}, vous avez remporté {treasuresCollected} {treasuresString} 😍 !</h2>
+                <h2 className="sub-header text-center mt-5 height-1-5">Félicitations {adventurer}, vous avez remporté {treasuresCollected} {treasuresString} 😍 !</h2>
             }
         </Container>
     );
