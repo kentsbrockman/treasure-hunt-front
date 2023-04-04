@@ -18,6 +18,10 @@ const GameService = () => {
             processedGridRefs.push(gridRefs.current.slice(i, i + finalGrid[0].length));
         }
 
+        const currentPosition: GridSpot = filter2DArray(finalGrid, "adventurer", true)[0];
+        const currentCell: HTMLElement = processedGridRefs[Number(currentPosition.x)][Number(currentPosition.y)];
+        currentCell.textContent = "";
+
         for (let movement of movementSequence) { 
             round += 1;
 
