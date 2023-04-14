@@ -72,7 +72,7 @@ const InputGridMountains = (props: any) => {
     }
 
     return (
-        <div className="InputGridMountains">
+        <div className="InputGridMountains" data-testid="input-grid-mountains">
             {!enableComp && (
                 null
             )}

@@ -21,7 +21,7 @@ const InputGridLayout = ({ onSubmit }: any) => {
     }
 
     return (
-        <div className="InputGridLayout">
+        <div className="InputGridLayout" data-testid="input-grid-layout">
             <h3 className="sub-header text-center mb-5">Commençons par construire la carte aux trésors</h3>
 
             <Form className="margin-left-5 margin-right-5" onSubmit={validateGridLayout}>
@@ -35,6 +35,7 @@ const InputGridLayout = ({ onSubmit }: any) => {
                             onChange={e => setNbColumns(parseInt(e.target.value))}
                             min={minCols}
                             max={maxCols}
+                            data-testid="input-cols"
                         />
                     </Col>
                 </Form.Group>
@@ -49,12 +50,13 @@ const InputGridLayout = ({ onSubmit }: any) => {
                             onChange={e => setNbRows(parseInt(e.target.value))}
                             min={minRows}
                             max={maxRows}
+                            data-testid="input-rows"
                         />
                     </Col>
                 </Form.Group>
 
                 <div className="d-flex justify-content-center">
-                    <Button className="ButtonPrimaryCustom w-10" size="lg" type="submit">
+                    <Button className="ButtonPrimaryCustom w-10" size="lg" type="submit" data-testid="input-grid-layout-submit">
                         Valider
                     </Button>
                 </div>     
