@@ -135,7 +135,7 @@ const Adventure = () => {
     }
 
     return (
-        <Container className="Adventure">
+        <Container className="Adventure" data-testid="adventure-container">
             {showStepper &&
                 <>
                     <h2 className="header text-center mb-5">Partez à l'aventure</h2>
